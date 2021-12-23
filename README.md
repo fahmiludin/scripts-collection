@@ -34,27 +34,27 @@
 
 ### For Ubuntu
 #### Setup Docker CLI
-1. Uninstall old versions \
-2. Set up the repository \
+1. Uninstall old versions 
+2. Set up the repository 
 ```shell
 $ sudo apt-get update 
 $ sudo apt-get install ca-certificates curl gnupg lsb-release 
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg 
 $ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ``` 
-3. Install Docker Engine \
+3. Install Docker Engine 
 ```shell
 $ sudo apt-get update 
 $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
-4. Executing the Docker Command Without Sudo \
+4. Executing the Docker Command Without Sudo 
 ```shell
-$ sudo usermod -aG docker ${USER}` \
+$ sudo usermod -aG docker ${USER}
 $ su - ${USER}
 ``` 
 
 #### Setup Docker Compose
-1. Download Docker Compose \
+1. Download Docker Compose
 ```shell
 $ mkdir -p /usr/local/lib/docker/cli-plugins
 $ curl -SL "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-linux-$(uname -m)" -o /usr/local/lib/docker/cli-plugins
@@ -63,7 +63,7 @@ $ chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 
 #### Verify Docker and Docker Compose installation
 ```shell
-$ docker version \
+$ docker version
 $ docker compose version 
 ```
 
