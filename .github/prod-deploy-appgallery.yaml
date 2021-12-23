@@ -1,0 +1,60 @@
+name: Deploy to All Store for Production
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: App version to be deploy
+        required: false
+
+jobs:
+  fastlane-huawei-deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    name: Deploy to App Gallery Production
+    runs-on: ubuntu-latest
+    steps:
+      # Set up Java
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 12.x
+
+      # Set up Flutter.
+      - name: Clone Flutter repository with stable channel
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.5.2'
+      - run: flutter doctor -v
+
+      # Checkout 8conlay mobile app code and get packages.
+      - name: Checkout 8conlay mobile app code
+        uses: actions/checkout@v2
+      - run: flutter pub get
+
+      - name: Set App version number
+        if: ${{ github.event.inputs.version != '' }}       
+        run: |
+          sed -i "s/^version:.*/version: ${{ github.event.inputs.version }}/g" pubspec.yaml
+
+      # Setup Ruby, Bundler, and Gemfile dependencies
+      - name: Setup Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+          bundler-cache: true
+          working-directory: android
+
+      # Build and deploy with Fastlane (by default, to beta track) 🚀.
+      # Naturally, promote_to_production only deploys.
+      - run: bundle exec fastlane huawei_production
+        env:
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
+        working-directory: android
+
+      - run: bundle exec fastlane huawei_production
+        env:
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
+        working-directory: android
+
+      - uses: EndBug/add-and-commit@v7
+        with:
+          message: Update the repo after the build complete
