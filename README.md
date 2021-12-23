@@ -10,17 +10,17 @@
 `$ brew cask install docker` 
 
 ##### Using DMG
-1. Go to the [donwload page](`https://docs.docker.com/desktop/mac/install/`) 
+1. Go to the [download page](https://docs.docker.com/desktop/mac/install/) 
 2. Follow the instruction on the page 
 
 ##### Docker Desktop Alternative
 1. minikube 
 2. Run Docker on Multipass 
-3. More alternatives : [Docker Desktop Alternatives](`https://devopstales.github.io/home/docker-desktop-alternatives/`) 
+3. More alternatives : [Docker Desktop Alternatives](https://devopstales.github.io/home/docker-desktop-alternatives/) 
 
 #### Setup AWS CLI
 ##### Using GUI
-1. Download the PKG file from [here](`https://awscli.amazonaws.com/AWSCLIV2.pkg`) 
+1. Download the PKG file from [here](https://awscli.amazonaws.com/AWSCLIV2.pkg) 
 2. Run the PKG file and follow the instructions 
 
 ##### Using CLI
