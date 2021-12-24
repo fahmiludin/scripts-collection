@@ -57,7 +57,7 @@ $ su - ${USER}
 1. Download Docker Compose
 ```shell
 $ mkdir -p /usr/local/lib/docker/cli-plugins
-$ curl -SL "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-linux-$(uname -m)" -o /usr/local/lib/docker/cli-plugins
+$ curl -SL "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-linux-$(uname -m)" -o /usr/local/lib/docker/cli-plugins/docker-compose
 $ chmod +x /usr/local/lib/docker/cli-plugins/docker-compose 
 ```
 
