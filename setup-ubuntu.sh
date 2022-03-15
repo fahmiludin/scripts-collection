@@ -20,5 +20,5 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 # Setup MySQL Client
-sudo apt install mysql-client
+sudo apt install mysql-client -y
 
