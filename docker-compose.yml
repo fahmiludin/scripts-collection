@@ -1,60 +1,21 @@
 version: "3.7"
 services:
-  # app:
-  #   build:
-  #     args:
-  #       user: user
-  #       uid: 1000
-  #       app: app
-  #     context: ./
-  #     dockerfile: Dockerfile
-  #   image: app
-  #   container_name: app
-  #   restart: unless-stopped
-  #   working_dir: /var/www/
-  #   volumes:
-  #     - ./app:/var/www/
-  #     - ./docker-compose/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-  #   networks:
-  #     - network
 
-  # nginx:
-  #   image: jonasal/nginx-certbot:latest
-  #   container_name: nginx
-  #   restart: unless-stopped
-  #   env_file:
-  #     - ./nginx-certbot.env
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   volumes:
-  #     - nginx_secrets:/etc/letsencrypt
-  #     - ./api:/var/www
-  #     - ./docker-compose/nginx:/etc/nginx/user_conf.d
-  #   networks:
-  #     - network
-
-    nginx_env:
-      build:
-        context: ./dockerfiles
-        dockerfile: Dockerfile-nginx
-      container_name: nginx_env
-      restart: unless-stopped
-      env_file:
-        - ./.env
-      ports:
-        - 80:80
-        - 443:443
-      volumes:
-        - ./docker-compose/nginx/templates:/etc/nginx/templates
-        - letsencrypt:/etc/letsencrypt
-      networks:
-        - network
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./portainer-data:/data
+    ports:
+      - 9000:9000
+    networks:
+      - network
         
 networks:
   network:
     driver: bridge
-
-volumes:
-  nginx_secrets:
-  letsencrypt:
