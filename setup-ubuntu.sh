@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Setup Docker & Docker Compose
 sudo apt-get update && sudo apt-get dist-upgrade -y
