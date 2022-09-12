@@ -18,7 +18,3 @@ sudo apt install unzip
 curl "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m).zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
-
-# Setup MySQL Client
-#sudo apt install mysql-client -y
-
