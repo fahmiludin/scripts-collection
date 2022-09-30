@@ -1,0 +1,14 @@
+name: Test Github API
+
+on:
+  workflow_dispatch:
+
+jobs:
+      
+  test:
+    name: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
