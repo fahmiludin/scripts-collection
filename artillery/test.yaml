@@ -1,9 +1,0 @@
-config:
-  target: "https://qa.kora-api.famuya.me"
-  phases:
-    - duration: 10
-      arrivalRate: 1
-scenarios:
-  - flow:
-      - get:
-          url: "/"
