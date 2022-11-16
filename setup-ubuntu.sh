@@ -25,4 +25,4 @@ sudo apt-get install teleport -y
 
 # Clean up
 rm -rf aws awscliv2.zip
-sudo apt autoremove
+sudo apt autoremove -y
