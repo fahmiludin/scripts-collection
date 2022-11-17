@@ -1,0 +1,57 @@
+# /etc/teleport.yaml
+version: v3
+teleport:
+  join_params:
+    token_name: iam-token
+    method: iam
+  proxy_server: https://bifrost.kskcitylabs.com:443
+ssh_service:
+  enabled: yes
+  labels:
+    project: devops
+    env: prod
+  commands:
+  - name: hostname
+    command: [hostname]
+    period: 1m0s
+auth_service:
+  enabled: no
+proxy_service:
+  enabled: no
+app_service:
+  enabled: yes
+  # Teleport provides a small debug app that can be used to make sure application
+  # access is working correctly. It'll output JWTs so it can be useful
+  # when extending your application.
+  debug_app: true
+  # This section contains definitions of all applications proxied by this
+  # service. It can contain multiple items.
+  apps:
+    # Name of the application. Used for identification purposes.
+  - name: "heimdall"
+    # URI and port the application is available at.
+    uri: "http://localhost:18000"
+    # Optional application public address to override.
+    public_addr: "heimdall.bifrost.kskcitylabs.com"
+    # Optional static labels to assign to the app. Used in RBAC.
+    labels:
+      project: "devops"
+db_service:
+  enabled: "yes"
+  # Matchers for database resources created with "tctl create" command.
+  # For more information: https://goteleport.com/docs/database-access/guides/dynamic-registration/
+  resources:
+  - labels:
+      "*": "*"
+  aws:
+    # Database types. Valid options are:
+    # 'rds' - discovers and registers AWS RDS and Aurora databases.
+    # 'redshift' - discovers and registers AWS Redshift databases.
+    # 'elasticache' - discovers and registers AWS ElastiCache Redis databases.
+    # 'memorydb' - discovers and registers AWS MemoryDB Redis databases.
+  - types: ["rds"]
+    # AWS regions to register databases from.
+    regions: ["ap-southeast-1"]
+    # AWS resource tags to match when registering databases.
+    tags:
+      "project": "pegasus"
