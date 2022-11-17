@@ -8,8 +8,8 @@ teleport:
 ssh_service:
   enabled: yes
   labels:
-    project: devops
-    env: prod
+    project: 
+    env: 
   commands:
   - name: hostname
     command: [hostname]
@@ -28,14 +28,14 @@ app_service:
   # service. It can contain multiple items.
   apps:
     # Name of the application. Used for identification purposes.
-  - name: "heimdall"
+  - name: ""
     # URI and port the application is available at.
-    uri: "http://localhost:18000"
+    uri: ""
     # Optional application public address to override.
-    public_addr: "heimdall.bifrost.kskcitylabs.com"
+    public_addr: ""
     # Optional static labels to assign to the app. Used in RBAC.
     labels:
-      project: "devops"
+      project: ""
 db_service:
   enabled: "yes"
   # Matchers for database resources created with "tctl create" command.
