@@ -52,6 +52,9 @@ services:
     volumes:
       - redisdata:/data
 
+
+docker run -d --name=botpress -p 3000:3000 botpress/server
+
 volumes:
   pgdata:
   redisdata:
