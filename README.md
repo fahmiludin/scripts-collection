@@ -1,5 +1,4 @@
-<h1>KSK DevOps</h1>
-<h2>Prerequisite</h2>
+
 
 ### For macOS
 #### Setup Docker Desktop
